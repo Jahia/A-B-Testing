@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean class="org.jahia.modules.abtesting.ABTestingFilter">
+        <property name="renderService" ref="RenderService"/>
+        <property name="priority" value="1" />
+        <property name="description" value="AB"/>
+        <property name="applyOnNodeTypes" value="jmix:abtesting" />
+        <property name="applyOnModes" value="live,preview" />
+        <property name="applyOnConfigurations" value="page" />
+        <property name="applyOnTemplateTypes" value="html" />
+    </bean>
+
+    <bean class="org.jahia.modules.abtesting.ABTestingApplierFilter">
+        <property name="renderService" ref="RenderService"/>
+        <property name="description" value="A/B Testing filter"/>
+        <property name="priority" value="21"/>
+        <property name="applyOnNodeTypes" value="jmix:abtesting" />
+        <property name="applyOnConfigurations" value="page,gwt" />
+        <property name="applyOnTemplateTypes" value="html,edit,html-iphone" />
+    </bean>
+</beans>
