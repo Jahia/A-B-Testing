@@ -24,13 +24,15 @@ public class ABTestingFilter extends AbstractFilter {
     @Override
     public String prepare(RenderContext renderContext, Resource resource, RenderChain chain) throws Exception {
         if (resource.getContextConfiguration().equals("page")) {
+            Integer i = (Integer) renderContext.getRequest().getSession().getAttribute("abtest-"+resource.getNode().getIdentifier());
+            if (i == null) {
             current ++;
             current %= (int) resource.getNode().getProperty("j:numberOfVersions").getLong();
-
-            int rnd = current; //random.nextInt((int) resource.getNode().getProperty("j:numberOfVersions").getLong());
-
-            renderContext.getRequest().setAttribute("abtesting",rnd);
-            System.out.println("-rnd-->" + rnd);
+                i = current; //random.nextInt((int) resource.getNode().getProperty("j:numberOfVersions").getLong());
+                renderContext.getRequest().getSession().setAttribute("abtest-"+resource.getNode().getIdentifier(), i);
+            }
+            renderContext.getRequest().setAttribute("abtesting",i);
+            renderContext.getRequest().setAttribute("analytics-path", resource.getNode().getUrl()+".abtest-"+i );
         }
 
         List l = (List) renderContext.getRequest().getAttribute("module.cache.additional.key");
