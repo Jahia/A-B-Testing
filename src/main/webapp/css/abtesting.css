@@ -1,0 +1,33 @@
+#abtestingtoolbar {
+    height:27px;
+    width:100%;
+    background: #03399c url(img/bg-abtesting.png) no-repeat top right;
+	line-height:24px;
+	color:#FFF;
+}
+#abtestingtoolbar .abtestingseparator {
+    padding:0 10px;
+}
+#abtestingtoolbar a,#abtestingtoolbar a:link, #abtestingtoolbar a:visited{
+	width:auto;
+    color: #fff;
+	padding:4px;
+	vertical-align: middle;
+	display:inline;
+	font-family:Arial,Verdana,Helvetica,sans-serif;
+	font-size:11px !important;
+	line-height:16px;
+	margin-bottom:5px;
+	margin-top:2px;
+	text-decoration:none
+}
+#abtestingtoolbar a:hover, #abtestingtoolbar a:active,
+#abtestingtoolbar a.selected,#abtestingtoolbar a.selected:link, #abtestingtoolbar a.selected:visited,#abtestingtoolbar a.selected:hover, #abtestingtoolbar a.selected:active{
+    background:#a3adb3 url(img/bgabtesting-a.png) repeat-x top left;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+    color: #333;
+	cursor: pointer;
+	text-decoration:none;
+}

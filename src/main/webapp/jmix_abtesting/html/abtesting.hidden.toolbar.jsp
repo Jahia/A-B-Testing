@@ -5,14 +5,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="functions" uri="http://www.jahia.org/tags/functions" %>
-<%@ taglib prefix="utils" uri="http://www.jahia.org/tags/utilityLib" %>
-A/B Testing
-<c:forEach var="i" begin="0" end="${currentNode.properties['j:numberOfVersions'].long - 1}" step="1" varStatus="status">
-    <c:if test="${i eq 0}">
-        <a href="<c:url value='${url.base}${currentNode.path}.html'/>">Base version</a>
-    </c:if>
-    <c:if test="${i ne 0}">
-        <a href="<c:url value='${url.base}${currentNode.path}.html?alt=${i}'/>">Alternative ${i}</a>
-    </c:if>
 
-</c:forEach>
+<template:addResources type="css" resources="abtesting.css"/>
+
+<div id="abtestingtoolbar">
+    <div class="abtestingseparator">
+        <c:forEach var="i" begin="0" end="${currentNode.properties['j:numberOfVersions'].long - 1}" step="1" varStatus="status">
+            <c:if test="${i eq 0}">
+                <a href="<c:url value='${url.base}${currentNode.path}.html'/>">Base version</a>
+            </c:if>
+            <c:if test="${i ne 0}">
+                <a href="<c:url value='${url.base}${currentNode.path}.html?alt=${i}'/>">Alternative ${i}</a>
+            </c:if>
+
+        </c:forEach>
+    </div>
+</div>
