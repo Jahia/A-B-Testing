@@ -21,8 +21,8 @@ public class ABTestingApplierFilter extends AbstractFilter {
 
             renderContext.getRequest().setAttribute("abtestingdone", Boolean.TRUE);
         } else if (renderContext.isEditMode() || renderContext.isContributionMode()) {
-            if (resource.getModuleParams().get("alt") != null) {
-                i = Integer.parseInt((String)resource.getModuleParams().get("alt"));
+            if (renderContext.getRequest().getParameter("alt") != null) {
+                i = Integer.parseInt(renderContext.getRequest().getParameter("alt"));
             }
         }
         if (i > 0) {
@@ -45,7 +45,7 @@ public class ABTestingApplierFilter extends AbstractFilter {
                 while (template.next != null) {
                     template = template.next;
                 }
-                template.next = new Template(null,node.getNode("alt"+i).getIdentifier(),null);
+                template.next = new Template(null,node.getNode("alt"+i).getIdentifier(),null, "abtesting"+i);
                 resource.getModuleParams().put("templateEdit",template.next.node);
             }
         }
