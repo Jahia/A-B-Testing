@@ -12,10 +12,10 @@
     <div class="abtestingseparator">
         <c:forEach var="i" begin="0" end="${currentNode.properties['j:numberOfVersions'].long - 1}" step="1" varStatus="status">
             <c:if test="${i eq 0}">
-                <a href="<c:url value='${url.base}${currentNode.path}.html'/>">Base version</a>
+                <a href="<c:url value='${url.base}${currentNode.path}.html'/>" <c:if test="${empty param['alt']}">class="selected"</c:if>>Base version</a>
             </c:if>
             <c:if test="${i ne 0}">
-                <a href="<c:url value='${url.base}${currentNode.path}.html?alt=${i}'/>">Alternative ${i}</a>
+                <a href="<c:url value='${url.base}${currentNode.path}.html?alt=${i}'/>" <c:if test="${param['alt'] eq i}">class="selected"</c:if>>Alternative ${i}</a>
             </c:if>
 
         </c:forEach>
