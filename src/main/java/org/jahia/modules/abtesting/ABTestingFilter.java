@@ -45,4 +45,20 @@ public class ABTestingFilter extends AbstractFilter {
 
         return super.prepare(renderContext, resource, chain);
     }
+
+    @Override
+    public String execute(String previousOut, RenderContext renderContext, Resource resource, RenderChain chain) throws Exception {
+        List l = (List) renderContext.getRequest().getAttribute("module.cache.additional.key");
+        if (l == null) {
+            return super.execute(previousOut, renderContext, resource, chain);
+        }
+        l.remove("abtest" + renderContext.getRequest().getAttribute("abtesting"));
+        if (l.size() == 0) {
+            renderContext.getRequest().removeAttribute("module.cache.additional.key");
+        } else {
+            renderContext.getRequest().setAttribute("module.cache.additional.key", l);
+        }
+        return super.execute(previousOut, renderContext, resource, chain);
+    }
+
 }
